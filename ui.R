@@ -22,7 +22,7 @@ shinyUI(fluidPage(
            uiOutput("player"),
            br(),
            br()
-  )),
+    )),
   fluidRow(
     column(2),
     column(8,
@@ -31,46 +31,48 @@ shinyUI(fluidPage(
     column(2)
   ),
   fluidRow(
-      column(4),
-      column(4,
-             h3("Game Options")
-      ),
-      column(4)
-    ),
-  fluidRow(
-      column(2),
-      column(6,
-             p("Press Hit to draw a card, Stand to stand and Start to start a new game"))
-      
-    ),
-   fluidRow( 
-      column(1),
-      column(3,
-             actionButton("hit", label = "Hit",icon("step-forward", lib = "glyphicon"), 
-                          style="color: #fff; background-color: #337ab7; border-color: #2e6da4")
-      ),
-     column(1),
-      column(3,
-             actionButton("stand", label = "Stand",icon("stop", lib = "glyphicon"), 
-                          style="color: #fff; background-color: #337ab7; border-color: #2e6da4")
-      ),
-     column(1),
-      column(3,
-             actionButton("start",label = "Start",icon("play", lib = "glyphicon"), 
-                          style="color: #fff; background-color: #337ab7; border-color: #2e6da4")
-      )
-      
-  ),
-  fluidRow(
     column(4),
     column(4,
-           h3("Rules")
+           h3("Game Options")
     ),
     column(4)
   ),
   fluidRow(
+    column(2),
+    column(6,
+           p("Press Hit to draw a card, Stand to stand and Start to start a new game"))
+    
+  ),
+  fluidRow( 
     column(1),
-    column(10,
+    column(3,
+           actionButton("hit", label = "Hit",icon("step-forward", lib = "glyphicon"), 
+                        style="color: #fff; background-color: #337ab7; border-color: #2e6da4")
+    ),
+    column(1),
+    column(3,
+           actionButton("stand", label = "Stand",icon("stop", lib = "glyphicon"), 
+                        style="color: #fff; background-color: #337ab7; border-color: #2e6da4")
+    ),
+    column(1),
+    column(3,
+           actionButton("start",label = "Start",icon("play", lib = "glyphicon"), 
+                        style="color: #fff; background-color: #337ab7; border-color: #2e6da4")
+    )
+    
+  ),
+  fluidRow(
+    column(4),
+    column(5,
+           h3("Rules")
+    ),
+    column(3,
+           h3("Code for the App")
+    )
+  ),
+  fluidRow(
+    column(1),
+    column(8,
            strong("Cards"),
            p("The standard 52-card pack is used"),
            strong("Objective"),
@@ -79,8 +81,10 @@ shinyUI(fluidPage(
            p("It is up to each individual player if an Ace is worth 1 or 11. Face cards are 10 and any other card is its pip value") ,
            strong("Order of play"),  
            p("The player will draw cards first and then the dealer")
-    )
+    ),
+    column(3,
+           helpText(   a("https://github.com/itecu/blackjack",href="https://github.com/itecu/blackjack",target="_blank"))
+    )       
   )
 )
 )
-

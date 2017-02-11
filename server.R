@@ -31,9 +31,9 @@ playerscore=c(0)
 dealercount=1
 playercount=1
 if (scr[trunc((shuffle[3]-1)/4)+1] > 1) {dealerscore[1:dealercount]<-dealerscore[1:dealercount]+scr[trunc((shuffle[3]-1)/4)+1]
-   } else { dealerscore[1:dealercount]<-dealerscore[1:dealercount]+1
-            dealerscore[(dealercount+1):(2*dealercount)]<-dealerscore[1:dealercount]+10
-            dealercount<-2*dealercount}
+} else { dealerscore[1:dealercount]<-dealerscore[1:dealercount]+1
+dealerscore[(dealercount+1):(2*dealercount)]<-dealerscore[1:dealercount]+10
+dealercount<-2*dealercount}
 if (scr[trunc((shuffle[4]-1)/4)+1] > 1) {dealerscore[1:dealercount]<-dealerscore[1:dealercount]+scr[trunc((shuffle[4]-1)/4)+1]
 } else { dealerscore[1:dealercount]<-dealerscore[1:dealercount]+1
 dealerscore[(dealercount+1):(2*dealercount)]<-dealerscore[1:dealercount]+10
@@ -101,7 +101,7 @@ shinyServer(function(input, output) {
       paste("New Game has started!")
     })
     cardcount<<-0
-    })
+  })
   observeEvent(input$hit, {
     poz<<-poz+1
     playerlastcard<<-paste(',img(src = "Cards/',L[[shuffle[poz]]],'",width=100,height=150)',sep="")
@@ -116,34 +116,34 @@ shinyServer(function(input, output) {
     if (min(playerscore) > 21) {
       output$text <- renderText({
         paste("Your score is:", min(playerscore), "You Lost!")
-        })
+      })
       shinyjs::disable("hit")
       shinyjs::disable("stand")
     }
-    })
+  })
   observeEvent(input$stand, {
     shinyjs::disable("hit")
     shinyjs::disable("stand")
     shinyjs::disable("start")
     while (TRUE) {
-    if (min(dealerscore) > 21) {
-      output$text <- renderText({
-        paste("Dealer score is:", min(dealerscore), "You Win!")
+      if (min(dealerscore) > 21) {
+        output$text <- renderText({
+          paste("Dealer score is:", min(dealerscore), "You Win!")
         })
-      shinyjs::enable("start")
-      break
-    } else if (max(dealerscore[dealerscore<22]) > max(playerscore[playerscore<22])) {
-      output$text <- renderText({
-        paste("Dealer score is:", max(dealerscore[dealerscore<22]), "wich is greater than yours","(", max(playerscore[playerscore<22]),")",".Dealer Wins!")
-      })
-      shinyjs::enable("start")
-      break
-    } else if ((max(dealerscore[dealerscore<22]) == max(playerscore[playerscore<22])) & (max(dealerscore[dealerscore<22]) > 16)) {
-      output$text <- renderText({
-        paste("Dealer score is:", min(dealerscore), "wich is equal to yours","(",min(playerscore),")",".Draw!")
-      })
-      shinyjs::enable("start")
-      break
+        shinyjs::enable("start")
+        break
+      } else if (max(dealerscore[dealerscore<22]) > max(playerscore[playerscore<22])) {
+        output$text <- renderText({
+          paste("Dealer score is:", max(dealerscore[dealerscore<22]), "wich is greater than yours","(", max(playerscore[playerscore<22]),")",".Dealer Wins!")
+        })
+        shinyjs::enable("start")
+        break
+      } else if ((max(dealerscore[dealerscore<22]) == max(playerscore[playerscore<22])) & (max(dealerscore[dealerscore<22]) > 16)) {
+        output$text <- renderText({
+          paste("Dealer score is:", min(dealerscore), "wich is equal to yours","(",min(playerscore),")",".Draw!")
+        })
+        shinyjs::enable("start")
+        break
       } else {
         cardcount<<-cardcount+1
         shinyjs::html("text", paste("Dealer draws card",cardcount,"!"))
@@ -156,11 +156,10 @@ shinyServer(function(input, output) {
         dealerscore[(dealercount+1):(2*dealercount)]<<-dealerscore[1:dealercount]+10
         dealercount<<-2*dealercount}
         output$dealer = renderUI({
-        eval(parse(text=paste(dealercards,')',sep="")))
+          eval(parse(text=paste(dealercards,')',sep="")))
         })
       }
     }
   })
-  })
-
+})
 
