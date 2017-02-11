@@ -140,7 +140,7 @@ shinyServer(function(input, output) {
         break
       } else if ((max(dealerscore[dealerscore<22]) == max(playerscore[playerscore<22])) & (max(dealerscore[dealerscore<22]) > 16)) {
         output$text <- renderText({
-          paste("Dealer score is:", min(dealerscore), "wich is equal to yours","(",min(playerscore),")",".Draw!")
+          paste("Dealer score is:", max(dealerscore[dealerscore<22]), "wich is equal to yours","(",max(playerscore[playerscore<22]),")",".Draw!")
         })
         shinyjs::enable("start")
         break
