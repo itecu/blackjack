@@ -19,4 +19,4 @@ It is up to each individual player if an ace is worth 1 or 11. Face cards are 10
 
 ## Shiny application
 
-You can find my application at this link: <https://tecuion.shinyapps.io/blackjack/>
+You can find my application at this link: <https://tecuion.shinyapps.io/blackjackshiny/>
